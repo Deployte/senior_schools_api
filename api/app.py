@@ -3,10 +3,20 @@ from fastapi.responses import JSONResponse
 import json
 import os
 
+# Custom JSON response with pretty printing
+class PrettyJSONResponse(JSONResponse):
+    def render(self, content) -> bytes:
+        return json.dumps(
+            content,
+            indent=4,         # ✅ pretty print
+            ensure_ascii=False
+        ).encode("utf-8")
+
 app = FastAPI(
-    title="Kenya Schools API",
+    title="Kenya Senior Schools API",
     version="1.2.0",
-    description="An API for querying Kenyan senior schools data"
+    description="An API for querying Kenyan senior schools data",
+    default_response_class=PrettyJSONResponse  # ✅ apply globally
 )
 
 # Load dataset once (improves speed)
@@ -52,7 +62,7 @@ async def get_schools(
         filtered = [s for s in filtered if name.lower() in s.get("school_name", "").lower()]
 
     if not filtered:
-        return JSONResponse(status_code=404, content={"message": "No schools found"})
+        return {"message": "No schools found"}
     return filtered
 
 @app.get("/api/school/{id}")
@@ -69,5 +79,5 @@ async def get_school(id: str):
     )
 
     if not school:
-        return JSONResponse(status_code=404, content={"message": f"School with ID '{id}' not found"})
+        return {"message": f"School with ID '{id}' not found"}
     return school
