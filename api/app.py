@@ -28,7 +28,7 @@ with open(DATA_FILE, "r", encoding="utf-8") as f:
 async def root():
     """API welcome page"""
     return {
-        "message": "🎓 Welcome to the Kenya Schools API!",
+        "message": "🎓 Welcome to the Kenya Senior Schools API!",
         "endpoints": {
             "/api/schools": "Filter schools by county, gender, accommodation, SNE, or name",
             "/api/school/{id}": "Get a single school by KNEC code or UIC"
