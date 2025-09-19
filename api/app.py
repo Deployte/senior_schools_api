@@ -3,13 +3,28 @@ from fastapi.responses import JSONResponse
 import json
 import os
 
-app = FastAPI(title="Schools API", version="1.2.0")
+app = FastAPI(
+    title="Kenya Schools API",
+    version="1.2.0",
+    description="An API for querying Kenyan senior schools data"
+)
 
 # Load dataset once (improves speed)
 DATA_FILE = os.path.join(os.path.dirname(__file__), "../senior_schools.json")
 with open(DATA_FILE, "r", encoding="utf-8") as f:
     SCHOOLS = json.load(f)
 
+@app.get("/")
+async def root():
+    """API welcome page"""
+    return {
+        "message": "🎓 Welcome to the Kenya Schools API!",
+        "endpoints": {
+            "/api/schools": "Filter schools by county, gender, accommodation, SNE, or name",
+            "/api/school/{id}": "Get a single school by KNEC code or UIC"
+        },
+        "version": "1.2.0"
+    }
 
 @app.get("/api/schools")
 async def get_schools(
@@ -39,7 +54,6 @@ async def get_schools(
     if not filtered:
         return JSONResponse(status_code=404, content={"message": "No schools found"})
     return filtered
-
 
 @app.get("/api/school/{id}")
 async def get_school(id: str):
