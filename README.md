@@ -27,7 +27,7 @@ This project is built using **FastAPI** and is deployed as a **Serverless Functi
 ##  API Endpoints
 
 **Base URL:**  
-https://senior-schools-cit8hx4wv-deployte.vercel.app.
+https://senior-schools-api.onrender.com/
 
 ---
 
@@ -50,7 +50,7 @@ https://senior-schools-cit8hx4wv-deployte.vercel.app.
 GET /api/schools?county=Nairobi&gender=boys
 
 - In a browser:
- [https://senior-schools-cit8hx4wv-deployte.vercel.app/api/schools?county=Nairobi&gender=boys](https://senior-schools-cit8hx4wv-deployte.vercel.app/api/schools?county=Nairobi&gender=boys)
+ [https://senior-schools-api.onrender.com/api/schools?county=Nairobi&gender=boys](https://senior-schools-api.onrender.com/api/schools?county=Nairobi&gender=boys)
 
 ### 2. Get a Single School
 **Endpoint:** `/api/school/{id}`  
@@ -65,7 +65,7 @@ GET /api/school/7J98
 
 
 - In a browser:
-[https://senior-schools-cit8hx4wv-deployte.vercel.app/api/school/33517209](https://senior-schools-cit8hx4wv-deployte.vercel.app/api/school/33517209)
+  [https://senior-schools-api.onrender.com/api/school/33517209](https://senior-schools-api.onrender.com/api/school/33517209)
 
 
 ## Local Development
@@ -102,6 +102,7 @@ uvicorn api.app:app --reload
 ```
 - Your API will now be running locally at http://127.0.0.1:8000. 
 - You can access the API documentation (Swagger UI) at http://127.0.0.1:8000/docs.
+
 
 
 
